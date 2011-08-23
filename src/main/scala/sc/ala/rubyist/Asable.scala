@@ -1,4 +1,4 @@
-package com.s21g.rubyist
+package sc.ala.rubyist
 
 trait Asable {
   class Asable(a: => Any) { 

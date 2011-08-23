@@ -1,9 +1,10 @@
-package com.s21g.rubyist
 
-import scala.tools.nsc.io.Path
+package sc.ala.rubyist
+
+import _root_.scala.tools.nsc.io.Path
 import scala.io.Source
 import java.io._
-import com.s21g.rubyist.Digest._
+import sc.ala.rubyist.Digest._
 
 object Pathname {
   implicit def pathnameToPath(x: Pathname): Path = x.path

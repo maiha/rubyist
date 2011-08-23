@@ -4,7 +4,7 @@ import org.scalatest.matchers.ShouldMatchers
 import java.io.File
 import org.apache.commons.io._
 
-import com.s21g.rubyist._
+import sc.ala.rubyist._
 
 class HathnameTest extends Spec with ShouldMatchers {
   def cleanDir(path:String): Unit = {

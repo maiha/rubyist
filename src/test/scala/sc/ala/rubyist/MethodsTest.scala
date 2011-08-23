@@ -3,7 +3,7 @@ import org.scalatest.matchers.ShouldMatchers
 
 class MethodsTest extends Spec with ShouldMatchers {
   describe("methods") {
-    import com.s21g.rubyist.Methods._
+    import sc.ala.rubyist.Methods._
 
     describe("should return list") {
       val intMethods = """

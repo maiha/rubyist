@@ -21,20 +21,20 @@ Usage
 
   // rescue
 
-  import com.s21g.rubyist.Rescue._
+  import sc.ala.rubyist.Rescue._
   val num = "1".toInt           // => 1
   val num = "x".toInt           // java.lang.NumberFormatException
   val num = "x".toInt rescue 0  // => 0
   
   // md5
 
-  import com.s21g.rubyist.Digest
+  import sc.ala.rubyist.Digest
   Digest.MD5.hexdigest("ruby") // => "58e53d1324eef6265fdb97b08ed9aadf"
 
 
   // Pathname
 
-  import com.s21g.rubyist.Pathname
+  import sc.ala.rubyist.Pathname
   val log = Pathname("log/langs.txt")
   log.exists           // => false
   log.parent.mkpath
@@ -46,7 +46,7 @@ Usage
 
   // Hashname
 
-  import com.s21g.rubyist.Hashname
+  import sc.ala.rubyist.Hashname
   val hash = Hashname("data/users/910.xml")
   hash.path         // => "data/users/e/20/5ee/e205ee2a5de471a70c1fd1b46033a75f/910.xml"
   hash.write("...") // write given string into above file
@@ -54,7 +54,7 @@ Usage
 
   // Host,CurrentHost
 
-  import com.s21g.rubyist.CurrentHost
+  import sc.ala.rubyist.CurrentHost
   CurrentHost.name     // => mayuyu
   CurrentHost.address  // => 192.168.1.5
 
@@ -62,8 +62,9 @@ Usage
 Required
 ========
 
-  * tested on Scala-2.8.0.RC2
+  * tested on scala-2.9.0.RC3
 
 
-Authors: info@s21g.com
-Links: http://github.com/s21g/rubyist
+Authors: maiha@wota.jp
+Links: http://github.com/maiha/rubyist (forked from s21g/rubyist)
+

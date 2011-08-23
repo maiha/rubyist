@@ -3,7 +3,7 @@ import org.scalatest.matchers.ShouldMatchers
 
 class RescueableTest extends Spec with ShouldMatchers {
   describe("rescue") {
-    import com.s21g.rubyist.Rescue._
+    import sc.ala.rubyist.Rescue._
 
     describe("(with exceptions)") {
       describe("should rescue exceptions") {

@@ -1,7 +1,7 @@
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
-import com.s21g.rubyist.Digest
+import sc.ala.rubyist.Digest
 
 class DigestTest extends Spec with ShouldMatchers {
   describe("Digest.MD5") {

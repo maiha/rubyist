@@ -3,7 +3,7 @@ import org.scalatest.matchers.ShouldMatchers
 
 import java.io.File
 
-import com.s21g.rubyist._
+import sc.ala.rubyist._
 
 class HostTest extends Spec with ShouldMatchers {
   describe("Host") {
