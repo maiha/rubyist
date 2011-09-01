@@ -9,6 +9,7 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
   def sjis  = Pathname("src/test/resources/Pathname/hello.txt.sjis")
 
   import java.nio.charset.MalformedInputException
+  import java.nio.charset.UnmappableCharacterException
 
   describe("Pathname") {
     // ----------------------------------------------------------------------
@@ -123,6 +124,21 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
       evaluating {
 	sjis.read
       } should produce [MalformedInputException]
+    }
+
+    describe("can read Shift_JIS file with Shift_JIS charset") {
+      try {
+	Pathname(sjis.path, "Shift_JIS").read
+      } catch {
+	case e:MalformedInputException =>
+	  fail("langs.read raised MalformedInputException")
+      }
+    }
+
+    describe("should fail to read UTF-8 file with Shift_JIS charset") {
+      evaluating {
+	Pathname(utf8.path, "Shift_JIS").read
+      } should produce [UnmappableCharacterException]
     }
   }
 }

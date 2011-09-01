@@ -44,6 +44,8 @@ Usage
   log.read             // => "Ruby\nScala"
   log.readlines        // => List("Ruby", "Scala")
 
+  Pathname("hello.txt.sjis", "Shift_JIS").read  // with charset
+
 
   // Hashname
 

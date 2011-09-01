@@ -4,22 +4,24 @@ package sc.ala.rubyist
 import _root_.scala.tools.nsc.io.Path
 import scala.io.Source
 import java.io._
+import java.nio.charset.Charset
 import sc.ala.rubyist.Digest._
 
 object Pathname {
   implicit def pathnameToPath(x: Pathname): Path = x.path
   implicit def pathToPathname(x: Path): Pathname = new Pathname(x.path)
 
-  def apply(path:String) = new Pathname(path)
+  def apply(path:String, charsetName: String = "UTF-8") =
+    new Pathname(path, charsetName)
 }
 
-class Pathname(file: String) {
+class Pathname(file: String, charsetName: String = "UTF-8") {
   lazy val logical  = Path(file)		   // logical path
   lazy val physical = Path(file)
   lazy val path     = physical.path
 
   def readlines = {
-    val in = Source.fromFile(path)
+    val in = Source.fromFile(path, charsetName)
     try { in.getLines().toList }
     finally { in.close }
   }
