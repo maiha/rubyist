@@ -1,18 +1,9 @@
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
-import java.io.File
-import org.apache.commons.io._
-
 import sc.ala.rubyist._
 
-class HathnameTest extends Spec with ShouldMatchers {
-  def cleanDir(path:String): Unit = {
-    FileUtils.deleteDirectory(new File(path))
-    val dir = new File(path)
-    dir.mkdirs
-  }
-
+class HathnameTest extends Spec with ShouldMatchers with FUtils {
   describe("Hashname") {
     describe("should hash directory") {
       // [given] file is 'data/uesrs/910.xml'
@@ -26,20 +17,21 @@ class HathnameTest extends Spec with ShouldMatchers {
     }
 
     describe("should write and read physical files") {
-      cleanDir("tmp")
-      val file = "tmp/users/910.xml"
-      val path = Pathname(file)
-      val hash = Hashname(file)
+      tmpDir("tmp_hash") {
+	val file = "tmp_hash/users/910.xml"
+	val path = Pathname(file)
+	val hash = Hashname(file)
 
-      path.exists should be(false)
-      hash.exists should be(false)
+	path.exists should be(false)
+	hash.exists should be(false)
 
-      hash.write("rubyist")
+	hash.write("rubyist")
 
-      path.exists should be(false)
-      hash.exists should be(true)
+	path.exists should be(false)
+	hash.exists should be(true)
 
-      hash.read should equal("rubyist")
+	hash.read should equal("rubyist")
+      }
     }
   }
 }

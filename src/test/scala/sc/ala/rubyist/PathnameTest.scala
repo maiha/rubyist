@@ -1,18 +1,9 @@
 import org.scalatest.Spec
 import org.scalatest.matchers.ShouldMatchers
 
-import java.io.File
-import org.apache.commons.io._
-
 import sc.ala.rubyist.Pathname
 
-class PathnameTest extends Spec with ShouldMatchers {
-  def cleanDir(path:String): Unit = {
-    FileUtils.deleteDirectory(new File(path))
-    val dir = new File(path)
-    dir.mkdirs
-  }
-
+class PathnameTest extends Spec with ShouldMatchers with FUtils {
   val langs = Pathname("src/test/resources/Pathname/langs.txt")
 
   describe("Pathname") {
@@ -31,30 +22,33 @@ class PathnameTest extends Spec with ShouldMatchers {
     // ----------------------------------------------------------------------
     // Actions
     describe("should write and read files") {
-      cleanDir("tmp")
-      val path = Pathname("tmp/foo.txt")
-      path.write("rubyist")
-      path.read should equal("rubyist")
+      tmpDir("tmp_path") {
+	val path = Pathname("tmp_path/foo.txt")
+	path.write("rubyist")
+	path.read should equal("rubyist")
+      }
     }
 
     describe("should append data") {
-      cleanDir("tmp")
-      val path = Pathname("tmp/foo.txt")
-      // write to empty file
-      path.append("rubyist")
-      path.read should equal("rubyist")
+      tmpDir("tmp_path") {
+	val path = Pathname("tmp_path/foo.txt")
+	// write to empty file
+	path.append("rubyist")
+	path.read should equal("rubyist")
 
-      // append to the file
-      path.append("!rubyist")
-      path.read should equal("rubyist!rubyist")
+	// append to the file
+	path.append("!rubyist")
+	path.read should equal("rubyist!rubyist")
+      }
     }
 
     describe("should automatically create parent directory in write") {
-      cleanDir("tmp")
-      val path = Pathname("tmp/Pathname/write/should/create/parent")
-      path.parent.exists should equal(false)
-      path.write("xxx")
-      path.parent.exists should equal(true)
+      tmpDir("tmp_path") {
+	val path = Pathname("tmp_path/Pathname/write/should/create/parent")
+	path.parent.exists should equal(false)
+	path.write("xxx")
+	path.parent.exists should equal(true)
+      }
     }
     
     describe("should read lines") {
@@ -62,20 +56,22 @@ class PathnameTest extends Spec with ShouldMatchers {
     }
 
     describe("should invoke methods of Path") {
-      cleanDir("tmp")
-      Pathname("tmp").exists should be(true)
-      Pathname("tmp/foo").exists should be(false)
+      tmpDir("tmp_path") {
+	Pathname("tmp_path").exists should be(true)
+	Pathname("tmp_path/foo").exists should be(false)
+      }
     }
 
     describe("should make path") {
-      cleanDir("tmp")
-      val path = Pathname("tmp/foo/bar")
-      path.exists should be(false)
-      path.isDirectory should be(false)
+      tmpDir("tmp_path") {
+	val path = Pathname("tmp_path/foo/bar")
+	path.exists should be(false)
+	path.isDirectory should be(false)
 
-      path.mkpath
-      path.exists should be(true)
-      path.isDirectory should be(true)
+	path.mkpath
+	path.exists should be(true)
+	path.isDirectory should be(true)
+      }
     }
 
     describe("should concat pathname") {

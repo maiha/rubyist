@@ -4,7 +4,7 @@ name := "rubyist"
 
 version := "0.2.0"
 
-scalaVersion := "2.9.1.RC3"
+scalaVersion := "2.9.1"
 
 retrieveManaged := true
 
