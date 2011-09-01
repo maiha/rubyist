@@ -4,7 +4,11 @@ import org.scalatest.matchers.ShouldMatchers
 import sc.ala.rubyist.Pathname
 
 class PathnameTest extends Spec with ShouldMatchers with FUtils {
-  val langs = Pathname("src/test/resources/Pathname/langs.txt")
+  def langs = Pathname("src/test/resources/Pathname/langs.txt")
+  def utf8  = Pathname("src/test/resources/Pathname/hello.txt.utf8")
+  def sjis  = Pathname("src/test/resources/Pathname/hello.txt.sjis")
+
+  import java.nio.charset.MalformedInputException
 
   describe("Pathname") {
     // ----------------------------------------------------------------------
@@ -96,5 +100,22 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
       path.path should equal("a/b")
     }
     */
+  }
+
+  // ----------------------------------------------------------------------
+  // Multibyte strings
+  describe("Pathname#read") {
+    describe("can read ascii file") {
+      try { langs.read } catch {
+	case e:MalformedInputException =>
+	  fail("langs.read raised MalformedInputException")
+      }
+    }
+
+    describe("should fail to read Shift_JIS file") {
+      evaluating {
+	sjis.read
+      } should produce [MalformedInputException]
+    }
   }
 }
