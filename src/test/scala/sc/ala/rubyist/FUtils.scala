@@ -2,8 +2,12 @@ import java.io.File
 import org.apache.commons.io._
 
 trait FUtils {
-  def cleanDir(path:String): Unit = {
+  def removeDir(path:String): Unit = {
     FileUtils.deleteDirectory(new File(path))
+  }
+
+  def cleanDir(path:String): Unit = {
+    removeDir(path)
     val dir = new File(path)
     dir.mkdirs
   }
@@ -11,7 +15,7 @@ trait FUtils {
   def tmpDir(path:String)(block: => Unit) {
     cleanDir(path)
     block
-    cleanDir(path)
+    removeDir(path)
   }
 }
 
