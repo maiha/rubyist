@@ -112,6 +112,13 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
       }
     }
 
+    describe("can read UTF-8 file") {
+      try { utf8.read } catch {
+	case e:MalformedInputException =>
+	  fail("langs.read raised MalformedInputException")
+      }
+    }
+
     describe("should fail to read Shift_JIS file") {
       evaluating {
 	sjis.read
