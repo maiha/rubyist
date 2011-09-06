@@ -28,14 +28,6 @@ class Tempfile(basename: String, root: String = Tempfile.tmpdir) {
   lazy val path = Tempfile.create(Pathname(root) + base)
 
   def unlink = path.unlink
-
-  def apply(block: Pathname => Unit) = {
-    block(path)
-    unlink
-  }
-
-  def apply(block: => Unit) = {
-    block
-    unlink
-  }
+  def apply(block: => Unit) = try { block } finally { unlink }
+  def apply(block: Pathname => Unit) = try { block(path) } finally { unlink }
 }

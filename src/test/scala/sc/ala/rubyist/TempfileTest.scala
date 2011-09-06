@@ -40,6 +40,21 @@ class TempfileTest extends Spec with ShouldMatchers {
       path.exists should be(false)
     }
 
+    describe("should delete tmpfile after block even if errors raised") {
+      val tmp  = new Tempfile("test")
+      val path = tmp.path
+
+      try {
+        tmp{ p:Pathname =>
+          path.exists should be(true)
+          1 / 0 // force error
+        }
+      } catch {
+        case _ => // ignore
+      }
+      path.exists should be(false)
+    }
+
     describe("should provide path in block(string)") {
       val tmp  = new Tempfile("test")
       val path = tmp.path
