@@ -15,6 +15,7 @@ Features
   * Hashname
   * Host,CurrentHost
   * String#chomp
+  * Tempfile
 
 
 Usage
@@ -66,6 +67,14 @@ Usage
 
   import sc.ala.rubyist.String._
   "abc\n".chomp  // => "abc"
+
+
+  // Tempfile
+
+  import sc.ala.rubyist.Tempfile
+  Tempfile("foo"){ tmp:Pathname =>
+    tmp.write("hello")
+  }
 
 
 Required

@@ -45,6 +45,10 @@ class Pathname(file: String, charsetName: String = "UTF-8") {
     } finally { reader.close }
   }
 
+  def touch = write("")
+
+  def unlink = (new File(path)).delete
+
   def write(buffer:String): Unit = {
     mkparent
     val out = new FileWriter(path)

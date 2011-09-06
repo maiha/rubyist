@@ -79,6 +79,27 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
       }
     }
 
+    describe("should touch an empty file") {
+      tmpDir("tmp_path") {
+        val path = Pathname("tmp_path/foo/bar")
+        path.exists should be(false)
+        path.touch
+        path.exists should be(true)
+        path.read should be("")
+      }
+    }
+
+    describe("should unlink path") {
+      tmpDir("tmp_path") {
+        val path = Pathname("tmp_path/foo/bar")
+        path.exists should be(false)
+        path.touch
+        path.exists should be(true)
+        path.unlink
+        path.exists should be(false)
+      }
+    }
+
     describe("should concat pathname") {
       val path = Pathname("a") + Pathname("b")
 
