@@ -16,6 +16,7 @@ Features
   * Host,CurrentHost
   * String#chomp
   * Tempfile
+  * NKF
 
 
 Usage
@@ -75,6 +76,14 @@ Usage
   Tempfile("foo"){ tmp:Pathname =>
     tmp.write("hello")
   }
+
+
+  // NKF
+  // This module directly invokes "nkf" external program,
+  // so it should be installed.
+
+  import sc.ala.rubyist.NKF
+  val utf8_text = NKF.nkf("-w", sjis_text)
 
 
 Required
