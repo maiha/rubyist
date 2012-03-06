@@ -24,6 +24,13 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
       Pathname("foo").extname should equal("")
     }
 
+    describe("should provide basename") {
+      Pathname("/tmp/foo.log").basename.path should equal("foo.log")
+      Pathname("/tmp/foo").basename.path should equal("foo")
+      Pathname("foo.log").basename.path should equal("foo.log")
+      Pathname("foo").basename.path should equal("foo")
+    }
+
     // ----------------------------------------------------------------------
     // Actions
     describe("should write and read files") {

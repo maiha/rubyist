@@ -73,6 +73,7 @@ class Pathname(file: String, charsetName: String = "UTF-8") {
 
   // Ruby#extname contains "." but Java#extension doesn't
   def extname  = if (logical.name.contains(".")) "."+logical.extension else ""
+  def basename = Pathname(physical.name)
 
   def mkpath   = physical.createDirectory()
   def mkparent = physical.parent.createDirectory()
