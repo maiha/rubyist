@@ -4,7 +4,7 @@ name := "rubyist"
 
 version := "0.2.1"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.9.2"
 
 retrieveManaged := true
 
@@ -16,7 +16,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "1.7.1" % "test"
 
 libraryDependencies ++= Seq(
   "commons-io" % "commons-io" % "2.0",
-  "org.specs2" %% "specs2" % "1.8.2" % "test"
+  "org.specs2" %% "specs2" % "1.9" % "test"
 )
 
 resolvers += ScalaToolsSnapshots
