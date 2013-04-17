@@ -1,5 +1,4 @@
-/project/boot/
-/project/build/target/
+/project/
 /lib_managed/
 /target/
 /tmp
