@@ -22,6 +22,10 @@ Features
 Usage
 =====
 
+  // times
+  import sc.ala.rubyist.Times._
+  3 times { println("ok") }
+
   // rescue
 
   import sc.ala.rubyist.Rescue._
