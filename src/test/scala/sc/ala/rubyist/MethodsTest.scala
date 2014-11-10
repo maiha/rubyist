@@ -1,7 +1,9 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
-class MethodsTest extends Spec with ShouldMatchers {
+class MethodsTest extends FunSpec with ShouldMatchers {
   describe("methods") {
     import sc.ala.rubyist.Methods._
 

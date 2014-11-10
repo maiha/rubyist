@@ -1,9 +1,9 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
-import sc.ala.rubyist.Pathname
-
-class PathnameTest extends Spec with ShouldMatchers with FUtils {
+class PathnameTest extends FunSpec with ShouldMatchers with FileUtils {
   def langs = Pathname("src/test/resources/Pathname/langs.txt")
   def utf8  = Pathname("src/test/resources/Pathname/hello.txt.utf8")
   def sjis  = Pathname("src/test/resources/Pathname/hello.txt.sjis")
@@ -166,7 +166,7 @@ class PathnameTest extends Spec with ShouldMatchers with FUtils {
     describe("should fail to read UTF-8 file with Shift_JIS charset") {
       evaluating {
 	Pathname(utf8.path, "Shift_JIS").read
-      } should produce [UnmappableCharacterException]
+      } should produce [java.nio.charset.MalformedInputException]
     }
   }
 }

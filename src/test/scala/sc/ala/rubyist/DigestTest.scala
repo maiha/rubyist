@@ -1,9 +1,9 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
-import sc.ala.rubyist.Digest
-
-class DigestTest extends Spec with ShouldMatchers {
+class DigestTest extends FunSpec with ShouldMatchers {
   describe("Digest.MD5") {
     describe("should generate hexdigest") {
       val md5sum = Digest.MD5.hexdigest("ruby")

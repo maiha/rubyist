@@ -2,3 +2,6 @@
 /lib_managed/
 /target/
 /tmp
+/.idea
+/.idea_modules
+

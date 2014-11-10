@@ -11,7 +11,7 @@ object NKF {
 
 class NKF(opt:String, text:String) {
   def apply(): String = {
-    Tempfile("nkf-src") {src:Pathname => src.write(text)
+    Tempfile("nkf-src") { src: Pathname => src.write(text)
       val cmd = "%s %s %s".format(NKF.cmd, opt, src.path)
       return Process(cmd) !!
     }

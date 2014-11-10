@@ -1,11 +1,11 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
 import java.io.File
 
-import sc.ala.rubyist._
-
-class TempfileTest extends Spec with ShouldMatchers {
+class TempfileTest extends FunSpec with ShouldMatchers {
   describe("Tempfile") {
     // ----------------------------------------------------------------------
     // Accessors
@@ -50,7 +50,7 @@ class TempfileTest extends Spec with ShouldMatchers {
           1 / 0 // force error
         }
       } catch {
-        case _ => // ignore
+        case _: Throwable => // ignore
       }
       path.exists should be(false)
     }

@@ -1,7 +1,9 @@
+package sc.ala.rubyist
+
 import java.io.File
 import org.apache.commons.io._
 
-trait FUtils {
+trait FileUtils {
   def removeDir(path:String): Unit = {
     FileUtils.deleteDirectory(new File(path))
   }

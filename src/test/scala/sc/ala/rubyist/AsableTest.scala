@@ -1,9 +1,11 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
-class AsableTest extends Spec with ShouldMatchers {
+class AsableTest extends FunSpec with ShouldMatchers {
   describe("as") {
-    describe("import") {
+    it("import") {
       import sc.ala.rubyist.As._
 
       val a:AnyRef = Map("test" -> 12)
@@ -11,7 +13,7 @@ class AsableTest extends Spec with ShouldMatchers {
       b("test") should equal(12)
     }
 
-    describe("extends") {
+    it("extends") {
       class Foo extends sc.ala.rubyist.Asable {
         val a:AnyRef = Map("test" -> 12)
         val b = a.as[Map[String,Int]]

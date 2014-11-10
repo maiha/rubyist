@@ -1,11 +1,13 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
 import java.io.File
 
 import sc.ala.rubyist.String._
 
-class StringTest extends Spec with ShouldMatchers {
+class StringTest extends FunSpec with ShouldMatchers {
   describe("String#chomp") {
     describe("should trim last CRLF") {
       "abc\n".chomp should equal("abc")

@@ -6,10 +6,13 @@ case class Host(ia:InetAddress) {
   def name    = ia.getHostName
   def address = ia.getHostAddress
 
-  def identity: String = try {
-    if (!name.isEmpty) return name
-    if (!address.isEmpty) return address
-    throw new RuntimeException("Hostname not found: " + toString)
+  def identity: String = {
+    if (name.nonEmpty)
+      name
+    else if (address.nonEmpty)
+      address
+    else
+      throw new RuntimeException("Hostname not found: " + toString)
   }
 }
 

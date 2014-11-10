@@ -1,7 +1,9 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
-class RescueableTest extends Spec with ShouldMatchers {
+class RescueableTest extends FunSpec with ShouldMatchers {
   describe("rescue") {
     import sc.ala.rubyist.Rescue._
 

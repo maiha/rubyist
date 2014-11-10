@@ -89,7 +89,7 @@ Usage
 Required
 ========
 
-  * tested on scala-2.9.1.final
+  * tested on scala 2.11.4
 
 
 Authors: maiha@wota.jp

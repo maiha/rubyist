@@ -1,11 +1,9 @@
-import org.scalatest.Spec
+package sc.ala.rubyist
+
+import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
-import java.io.File
-
-import sc.ala.rubyist._
-
-class HostTest extends Spec with ShouldMatchers {
+class HostTest extends FunSpec with ShouldMatchers {
   describe("Host") {
     // ----------------------------------------------------------------------
     // Accessors
