@@ -1,6 +1,6 @@
 name := "rubyist"
 
-version := "0.2.3"
+version := "0.2.4"
 
 scalaVersion := "2.11.4"
 
@@ -15,4 +15,5 @@ libraryDependencies ++= Seq(
   "commons-io" % "commons-io" % "2.4"
 )
 
-scalacOptions ++= Seq("-feature", "-language:implicitConversions", "-language:postfixOps")
+scalacOptions ++= Seq("-feature", "-unchecked", "-deprecation", "-language:implicitConversions", "-language:postfixOps")
+

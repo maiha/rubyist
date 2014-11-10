@@ -1,9 +1,9 @@
 package sc.ala.rubyist
 
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
-class AsableTest extends FunSpec with ShouldMatchers {
+class AsableTest extends FunSpec with Matchers {
   describe("as") {
     it("import") {
       import sc.ala.rubyist.As._

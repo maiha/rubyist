@@ -1,11 +1,11 @@
 package sc.ala.rubyist
 
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
 import java.io.File
 
-class TempfileTest extends FunSpec with ShouldMatchers {
+class TempfileTest extends FunSpec with Matchers {
   describe("Tempfile") {
     // ----------------------------------------------------------------------
     // Accessors

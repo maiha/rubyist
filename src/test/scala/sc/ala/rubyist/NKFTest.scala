@@ -1,9 +1,9 @@
 package sc.ala.rubyist
 
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
-class NKFTest extends FunSpec with ShouldMatchers {
+class NKFTest extends FunSpec with Matchers {
   def utf8  = Pathname("src/test/resources/Pathname/hello.txt.utf8")
   def sjis  = Pathname("src/test/resources/Pathname/hello.txt.sjis")
 

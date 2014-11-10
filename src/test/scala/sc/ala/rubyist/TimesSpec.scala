@@ -1,9 +1,9 @@
 package sc.ala.rubyist
 
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
-class TimesSpec extends FunSpec with ShouldMatchers {
+class TimesSpec extends FunSpec with Matchers {
   describe("times") {
     import Times._
 

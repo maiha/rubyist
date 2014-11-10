@@ -9,6 +9,8 @@ Features
 
   This provides following features those are well-known to rubyist.
 
+  * Object#tap
+  * Int#times
   * rescue
   * md5
   * Pathname#{read,write}
@@ -22,9 +24,16 @@ Features
 Usage
 =====
 
-  // times
+  // Object#tap
+  import sc.ala.rubyist.Tap._
+  val props = new java.util.Properties().tap{_.put("port", "80")}
+    // => java.util.Properties = {port=80}
+
+
+  // Int#times
   import sc.ala.rubyist.Times._
   3 times { println("ok") }
+
 
   // rescue
 
@@ -32,6 +41,7 @@ Usage
   val num = "1".toInt           // => 1
   val num = "x".toInt           // java.lang.NumberFormatException
   val num = "x".toInt rescue 0  // => 0
+
   
   // md5
 

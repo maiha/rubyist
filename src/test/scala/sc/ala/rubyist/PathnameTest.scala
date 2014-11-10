@@ -1,9 +1,9 @@
 package sc.ala.rubyist
 
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
-class PathnameTest extends FunSpec with ShouldMatchers with FileUtils {
+class PathnameTest extends FunSpec with Matchers with FileUtils {
   def langs = Pathname("src/test/resources/Pathname/langs.txt")
   def utf8  = Pathname("src/test/resources/Pathname/hello.txt.utf8")
   def sjis  = Pathname("src/test/resources/Pathname/hello.txt.sjis")
@@ -149,9 +149,7 @@ class PathnameTest extends FunSpec with ShouldMatchers with FileUtils {
     }
 
     describe("should fail to read Shift_JIS file") {
-      evaluating {
-	sjis.read
-      } should produce [MalformedInputException]
+      a [MalformedInputException] should be thrownBy { sjis.read }
     }
 
     describe("can read Shift_JIS file with Shift_JIS charset") {
@@ -164,9 +162,9 @@ class PathnameTest extends FunSpec with ShouldMatchers with FileUtils {
     }
 
     describe("should fail to read UTF-8 file with Shift_JIS charset") {
-      evaluating {
-	Pathname(utf8.path, "Shift_JIS").read
-      } should produce [java.nio.charset.MalformedInputException]
+      a [MalformedInputException] should be thrownBy {
+        Pathname(utf8.path, "Shift_JIS").read
+      }
     }
   }
 }

@@ -1,9 +1,9 @@
 package sc.ala.rubyist
 
 import org.scalatest._
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers._
 
-class HathnameTest extends FunSpec with ShouldMatchers with FileUtils {
+class HathnameTest extends FunSpec with Matchers with FileUtils {
   describe("Hashname") {
     describe("should hash directory") {
       // [given] file is 'data/uesrs/910.xml'
