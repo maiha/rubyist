@@ -12,6 +12,7 @@ libraryDependencies <+= scalaVersion("org.scala-lang" % "scala-compiler" % _ )
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.1" % "test",
+  "org.scalamock" %% "scalamock-scalatest-support" % "3.2" % "test",
   "commons-io" % "commons-io" % "2.4"
 )
 

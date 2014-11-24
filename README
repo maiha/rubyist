@@ -9,6 +9,7 @@ Features
 
   This provides following features those are well-known to rubyist.
 
+  * using
   * Object#tap
   * Int#times
   * rescue
@@ -23,6 +24,14 @@ Features
 
 Usage
 =====
+
+  // using
+  import java.io.ByteArrayOutputStream
+  using(new ByteArrayOutputStream) { out =>
+    ...
+  }
+  // out.close will be automatically called
+
 
   // Object#tap
   import sc.ala.rubyist.Tap._
