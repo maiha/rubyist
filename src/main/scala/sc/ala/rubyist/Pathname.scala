@@ -5,7 +5,9 @@ import scala.tools.nsc.io.Path
 import scala.io.Source
 import java.io._
 import java.nio.charset.Charset
+import org.apache.commons.io.IOUtils
 import sc.ala.rubyist.Digest._
+import sc.ala.rubyist.Using._
 
 object Pathname {
   implicit def pathnameToPath(x: Pathname): Path = x.path
@@ -20,12 +22,9 @@ class Pathname(file: String, charsetName: String = "UTF-8") {
   lazy val physical = Path(file)
   lazy val path     = physical.path
 
-  def readlines = {
-    val in = Source.fromFile(path, charsetName)
-    try { in.getLines().toList }
-    finally { in.close }
-  }
-  def read: String = readlines.mkString
+  def readlines(): List[String] = using(Source.fromFile(path, charsetName)) { _.getLines().toList }
+
+  def read(): String = readlines.mkString
 
   def eachline(code: String => Unit) {
     var done = false
@@ -45,26 +44,23 @@ class Pathname(file: String, charsetName: String = "UTF-8") {
     } finally { reader.close }
   }
 
-  def touch = write("")
+  def touch() = write("")
 
-  def unlink = (new File(path)).delete
+  def unlink() = (new File(path)).delete
 
-  def write(buffer:String): Unit = {
+  def write(raw: Array[Byte]): Unit = {
     mkparent
-    val out = new FileWriter(path)
-    try{
-      out.write(buffer)
-    }
-    finally{ out.close }
+    using(new FileOutputStream(path)) { _.write(raw) }
+  }
+
+  def write(buffer: String): Unit = {
+    mkparent
+    using(new FileWriter(path)) { _.write(buffer) }
   }
 
   def append(buffer:String): Unit = {
     mkparent
-    val out = new FileWriter(path, true)
-    try{
-      out.write(buffer)
-    }
-    finally{ out.close }
+    using(new FileWriter(path, true)) { _.write(buffer) }
   }
 
   def +(that:String): Pathname = Pathname(logical.resolve(that).path)

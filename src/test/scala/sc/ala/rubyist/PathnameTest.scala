@@ -37,7 +37,16 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
       tmpDir("tmp_path") {
 	val path = Pathname("tmp_path/foo.txt")
 	path.write("rubyist")
-	path.read should equal("rubyist")
+	path.read() should equal("rubyist")
+      }
+    }
+
+    describe("should write and read files with Array[Byte]") {
+      tmpDir("tmp_path") {
+	val path = Pathname("tmp_path/foo.txt")
+        val data: Array[Byte] = Array(-29, -127, -126)  // "あ"
+	path.write(data)
+	path.read() should equal("あ")
       }
     }
 
@@ -46,11 +55,11 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
 	val path = Pathname("tmp_path/foo.txt")
 	// write to empty file
 	path.append("rubyist")
-	path.read should equal("rubyist")
+	path.read() should equal("rubyist")
 
 	// append to the file
 	path.append("!rubyist")
-	path.read should equal("rubyist!rubyist")
+	path.read() should equal("rubyist!rubyist")
       }
     }
 
@@ -64,7 +73,7 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
     }
     
     describe("should read lines") {
-      langs.readlines should equal(List("Ruby","Scala"))
+      langs.readlines() should equal(List("Ruby","Scala"))
     }
 
     describe("should invoke methods of Path") {
@@ -90,9 +99,9 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
       tmpDir("tmp_path") {
         val path = Pathname("tmp_path/foo/bar")
         path.exists should be(false)
-        path.touch
+        path.touch()
         path.exists should be(true)
-        path.read should be("")
+        path.read() should be("")
       }
     }
 
@@ -100,9 +109,9 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
       tmpDir("tmp_path") {
         val path = Pathname("tmp_path/foo/bar")
         path.exists should be(false)
-        path.touch
+        path.touch()
         path.exists should be(true)
-        path.unlink
+        path.unlink()
         path.exists should be(false)
       }
     }
@@ -120,41 +129,32 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
       path.getClass should equal(Pathname("").getClass)
       path.path should equal("a/b")
     }
-
-/* // This doesn't pass. why???
-    describe("should convert implicitly String to Pathname") {
-      val path = "a" + Pathname("b")
-
-      path.getClass should equal(Pathname("").getClass)
-      path.path should equal("a/b")
-    }
-    */
   }
 
   // ----------------------------------------------------------------------
   // Multibyte strings
   describe("Pathname#read") {
     describe("can read ascii file") {
-      try { langs.read } catch {
+      try { langs.read() } catch {
 	case e:MalformedInputException =>
 	  fail("langs.read raised MalformedInputException")
       }
     }
 
     describe("can read UTF-8 file") {
-      try { utf8.read } catch {
+      try { utf8.read() } catch {
 	case e:MalformedInputException =>
 	  fail("langs.read raised MalformedInputException")
       }
     }
 
     describe("should fail to read Shift_JIS file") {
-      a [MalformedInputException] should be thrownBy { sjis.read }
+      a [MalformedInputException] should be thrownBy { sjis.read() }
     }
 
     describe("can read Shift_JIS file with Shift_JIS charset") {
       try {
-	Pathname(sjis.path, "Shift_JIS").read
+	Pathname(sjis.path, "Shift_JIS").read()
       } catch {
 	case e:MalformedInputException =>
 	  fail("langs.read raised MalformedInputException")
@@ -163,7 +163,7 @@ class PathnameTest extends FunSpec with Matchers with FileUtils {
 
     describe("should fail to read UTF-8 file with Shift_JIS charset") {
       a [MalformedInputException] should be thrownBy {
-        Pathname(utf8.path, "Shift_JIS").read
+        Pathname(utf8.path, "Shift_JIS").read()
       }
     }
   }

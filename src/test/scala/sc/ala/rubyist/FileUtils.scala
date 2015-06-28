@@ -16,8 +16,11 @@ trait FileUtils {
 
   def tmpDir(path:String)(block: => Unit) {
     cleanDir(path)
-    block
-    removeDir(path)
+    try {
+      block
+    } finally {
+      removeDir(path)
+    }
   }
 }
 
