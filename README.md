@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/maiha/rubyist.svg?branch=master)](https://travis-ci.org/maiha/rubyist)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/sc.ala/rubyist_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/sc.ala/rubyist_2.11)
+
 rubyist
 =======
 
